@@ -1,0 +1,19 @@
+﻿@model TestModel
+<tr>
+    @using (Html.BeginCollectionItem("Items"))
+    {
+        @Html.HiddenFor(m => m.Id)
+        <td>
+            @Html.EditorFor(m => m.TestString)
+        </td>
+        <td>
+            @Html.EditorFor(m => m.TestBool)
+        </td>
+        <td>
+            @Html.EditorFor(m => m.CreateDate)
+        </td>
+        <td>
+            <a href="#" class="btn-remove">Delete</a>
+        </td>
+    }
+</tr>
