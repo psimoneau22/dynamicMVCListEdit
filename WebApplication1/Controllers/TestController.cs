@@ -27,22 +27,37 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         public ActionResult Index(TestBaseModel model)
-        {
-            
-            if (ModelState.IsValid)
+        {            
+            if (Validate(model, ModelState))
             {
                 items = model.Items;
                 TempData["message"] = "updated";
-                return RedirectToAction("Index");
+                return PartialView("_TestForm", new TestBaseModel
+                {
+                    Name = model.Name,
+                    Items = items
+                });
             };
+
             TempData["message"] = "failed";
-            return View(model);
+            return PartialView("_TestForm", model);
         }
 
         [HttpGet]        
         public ActionResult GetRow()
         {
             return PartialView("_TestRow", new TestModel());
+        }
+
+        private bool Validate(TestBaseModel model, ModelStateDictionary modelState)
+        {
+            var isValid = true;
+            if(model.Name != "try me")
+            {
+                modelState.AddModelError("_", "say what?  try me");
+            }
+
+            return modelState.IsValid && isValid;
         }
     }
 }

@@ -4,16 +4,16 @@
     {
         @Html.HiddenFor(m => m.Id)
         <td>
-            @Html.EditorFor(m => m.TestString)
+            @Html.TextBoxFor(m => m.TestString, new { @class="form-control"})
         </td>
         <td>
-            @Html.EditorFor(m => m.TestBool)
+            @Html.CheckBoxFor(m => m.TestBool, new { @class = "form-control" })
         </td>
         <td>
-            @Html.EditorFor(m => m.CreateDate)
+            @Html.TextBoxFor(m => m.CreateDate, new { @class = "form-control" })
         </td>
         <td>
-            <a href="#" class="btn-remove">Delete</a>
+            <a href="#" class="btn btn-remove">Delete</a>
         </td>
     }
 </tr>

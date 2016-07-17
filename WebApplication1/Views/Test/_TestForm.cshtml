@@ -1,0 +1,58 @@
+﻿@model TestBaseModel
+
+@{   
+    Layout = null;
+    var id = Guid.NewGuid().ToString().Replace("-","");
+    var message = TempData["message"] as string;
+}
+
+@using (Ajax.BeginForm("Index", "Test", new { }, new AjaxOptions
+{
+    HttpMethod = "POST",
+    Confirm="are you really fucking sure",
+    UpdateTargetId = id.ToString(),    
+    InsertionMode = InsertionMode.ReplaceWith,
+    OnBegin = "begin_" + id,
+    OnComplete = "complete_" + id,
+    OnSuccess = "success_" + id,
+    OnFailure = "failure_" + id,
+    LoadingElementId = "loader",
+    LoadingElementDuration = 5000
+},
+    new { id = id }))
+{
+    <span>@message</span>
+    <span class="glyphicon glyphicon-hourglass" id="loader" style="display:none"></span>
+    @Html.ValidationSummary()
+    @Html.EditorFor(m => m.Name)
+    <table class="table table-list-test">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m.Items[0].TestString)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Items[0].TestBool)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Items[0].CreateDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var testItem in Model.Items)
+            {
+                @Html.Partial("_TestRow", testItem)
+            }
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-default btn-add-new" data-url="@Url.Action("GetRow", "Test")">Add New</button>
+    <button class="btn btn-primary">Submit</button>
+}
+    
+<script>
+    $(function () {
+        testController.initForm('@id');
+    })
+</script>    

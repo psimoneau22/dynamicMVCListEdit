@@ -2,84 +2,10 @@
 
 @{
     ViewBag.Title = "Index";
-    var id = Guid.NewGuid();
-    var message = TempData["message"] as string;
 }
 
-<h2>Index</h2>
-
-@using (Html.BeginForm("Index", "Test", FormMethod.Post, new { id = id })){
-    <span>@message</span>
-    @Html.ValidationSummary()
-    @Html.EditorFor(m => m.Name)
-    <table class="table table-list-test">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(m => m.Items[0].TestString)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(m => m.Items[0].TestBool)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(m => m.Items[0].CreateDate)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var testItem in Model.Items)
-            {
-                @Html.Partial("_TestRow", testItem)
-            }
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-add-new" data-url="@Url.Action("GetRow", "Test")">Add New</button>
-    <button class="btn ">Submit</button>    
-}
-
-<script>
-    (function($){
-        init('@id');
-
-        function init(id) {
-            var $form = $('#' + id);
-
-            $form.find('.btn-add-new').click({ form: $form }, addRow);
-            $form.on('click', '.btn-remove', removeRow);
-        }
-
-        function removeRow() {
-            $(this).closest('tr').remove();
-        }
-
-        function addRow(e) {
-            var $addRowBtn = $(this);
-            var $form = e.data.form;
-            var $target = $form.find('.table-list-test tbody');
-
-            var addRowUrl = $addRowBtn.data("url");                        
-            var index = $target.children().length;
-            
-            $.ajax(addRowUrl, {
-                data: { index: index },
-                success: appendRow,                
-                context: { target: $target, form: $form },
-                cache: true
-            });
-        }
-
-        function appendRow(data) {
-            this.target.append(data);
-            this.form.removeData('validator');
-            this.form.removeData('unobtrusiveValidation');
-            $.validator.unobtrusive.parse(this.form);            
-        }
-    })(jQuery);
-</script>
+@Html.Partial("_TestForm", Model)
 
 @section Scripts {
-    <script src="~/Scripts/dist/vendor.js"></script>
-    <script src="~/Scripts/dist/index.js"></script>
+    <script src="~/Scripts/app/testController.js"></script>
 }
-
