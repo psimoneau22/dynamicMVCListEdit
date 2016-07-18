@@ -1,0 +1,17 @@
+﻿@model TestModel2
+
+<tr>    
+    @Html.HiddenFor(m => m.Id)
+    <td>
+        @Html.TextBoxFor(m => m.SomeDescription, new { @class = "form-control" })
+    </td>
+    <td>
+        @Html.TextBoxFor(m => m.SomeNumber)
+        @Html.EditorFor(m => m.Child)
+    </td>
+    <td>
+        <a href="#" class="text-danger btn-remove">
+            <i class="fa fa-close"></i> Delete
+        </a>
+    </td>
+</tr>

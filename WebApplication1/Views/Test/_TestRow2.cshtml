@@ -1,0 +1,13 @@
+﻿@model TestModel2
+@{ 
+    var collectionName = ViewData["CollectionName"] as string;
+}
+
+<table>
+    <tbody>
+        @using (Html.BeginCollectionItem(collectionName))
+        {
+            @Html.EditorFor(m => m)
+        }
+    </tbody>
+</table>

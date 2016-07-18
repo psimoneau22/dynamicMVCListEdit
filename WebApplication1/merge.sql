@@ -1,5 +1,6 @@
 ﻿merge Person.Address as target 
 using (values 
+	-- this list should be dynamically generated from IEnumerable<SomeModel> 
 	--(32526, '1970 Napca Ct.', 'Bothell',	79,	'98011'),
 	(32530, '9833d Mt. Dias Blv.', 'Bothell',	79,	'98011'),
 	(32531, '7484 vRoundtree Drive Rdc', 'Bothell',	79,	'98011')
@@ -15,5 +16,5 @@ then update set
 	PostalCode = source.PostalCode
 when not matched by target then insert (AddressLine1, City, StateProvinceID, PostalCode)
 	values (source.AddressLine1, source.City, source.StateProvinceID, source.PostalCode)
-when not matched by source and target.addressid in (32530,32526,32531) 
+when not matched by source and target.addressid in (32530,32526,32531) -- where clause for target table subset
 then delete;

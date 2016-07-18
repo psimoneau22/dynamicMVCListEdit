@@ -20,6 +20,11 @@ namespace WebApplication1.Controllers
             new TestModel {CreateDate = DateTime.Now.AddDays(-2), Id =2, TestBool=false, TestString="value2" }
         };
 
+        private static List<TestModel2> list = new List<TestModel2> {
+            new TestModel2 {Id =1, SomeNumber=345, SomeDescription="desc", Child = new TestModel3 { xxx = "gdf", yyy = "hjfgh" } },
+            new TestModel2 {Id =2, SomeNumber=2312, SomeDescription="desc", Child = new TestModel3 { xxx = "gdf", yyy = "hjfgh" } }
+        };
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -27,7 +32,8 @@ namespace WebApplication1.Controllers
             {
                 Name = "try me",
                 Items = items,
-                Data = data
+                Data = data,
+                List = list
             });
         }        
 
@@ -38,13 +44,15 @@ namespace WebApplication1.Controllers
             {
                 items = model.Items;
                 data = model.Data;
+                list = model.List;
 
                 TempData["message"] = "updated";
                 return PartialView("_TestForm", new TestBaseModel
                 {
                     Name = model.Name,
                     Items = items,
-                    Data = data
+                    Data = data,
+                    List = list
                 });
             };
 
@@ -56,7 +64,15 @@ namespace WebApplication1.Controllers
         public ActionResult GetRow(string collection)
         {
             ViewData["CollectionName"] = collection;
-            return PartialView("_TestRow", new TestModel());
+
+            if (collection == "List")
+            {
+                return PartialView("_TestRow2", new TestModel2());
+            }
+            else
+            {
+                return PartialView("_TestRow", new TestModel());
+            }
         }
 
         private bool Validate(TestBaseModel model, ModelStateDictionary modelState)

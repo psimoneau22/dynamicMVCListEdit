@@ -35,7 +35,8 @@
     }
 
     function appendRow(data) {
-        this.$target.append(data);
+        var $newRow = $(data).find('tbody > *')
+        this.$target.append($newRow);
         initValidation(this.$form);
     }
 
