@@ -35,3 +35,22 @@ form input[data-val=true].form-control.valid {
 form input[data-val=true].form-control.valid:focus {
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #67b168
 }
+
+.loader-content {
+    position:relative;
+}
+
+.loader {
+    position:absolute;
+    display: flex;
+    background-color:rgba(0,0,0,.4);
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+.loader-spinner {    
+    color:white;
+    align-self:center;
+}

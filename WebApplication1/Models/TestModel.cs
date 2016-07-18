@@ -12,6 +12,9 @@ namespace WebApplication1.Models
         public string Name { get; set; }
         [Required]
         public List<TestModel> Items { get; set; }
+
+        [Required]
+        public List<TestModel> Data { get; set; }
     }
 
     public class TestModel

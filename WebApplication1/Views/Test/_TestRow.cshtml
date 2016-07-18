@@ -1,19 +1,25 @@
 ﻿@model TestModel
+@{ 
+    var collectionName = ViewData["CollectionName"] as string;
+}
+
 <tr>
-    @using (Html.BeginCollectionItem("Items"))
+    @using (Html.BeginCollectionItem(collectionName))
     {
         @Html.HiddenFor(m => m.Id)
         <td>
             @Html.TextBoxFor(m => m.TestString, new { @class="form-control"})
         </td>
         <td>
-            @Html.CheckBoxFor(m => m.TestBool, new { @class = "form-control" })
+            @Html.CheckBoxFor(m => m.TestBool)
         </td>
         <td>
-            @Html.TextBoxFor(m => m.CreateDate, new { @class = "form-control" })
+            @Html.EditorFor(m => m.CreateDate)
         </td>
         <td>
-            <a href="#" class="btn btn-remove">Delete</a>
+            <a href="#" class="text-danger btn-remove">
+                <i class="fa fa-close"></i> Delete
+            </a>
         </td>
     }
 </tr>

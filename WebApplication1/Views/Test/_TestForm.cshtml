@@ -9,50 +9,49 @@
 @using (Ajax.BeginForm("Index", "Test", new { }, new AjaxOptions
 {
     HttpMethod = "POST",
-    Confirm="are you really fucking sure",
-    UpdateTargetId = id.ToString(),    
+    UpdateTargetId = id.ToString(),
     InsertionMode = InsertionMode.ReplaceWith,
     OnBegin = "begin_" + id,
     OnComplete = "complete_" + id,
-    OnSuccess = "success_" + id,
-    OnFailure = "failure_" + id,
-    LoadingElementId = "loader",
-    LoadingElementDuration = 5000
-},
-    new { id = id }))
-{
-    <span>@message</span>
-    <span class="glyphicon glyphicon-hourglass" id="loader" style="display:none"></span>
-    @Html.ValidationSummary()
-    @Html.EditorFor(m => m.Name)
-    <table class="table table-list-test">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(m => m.Items[0].TestString)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(m => m.Items[0].TestBool)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(m => m.Items[0].CreateDate)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var testItem in Model.Items)
-            {
-                @Html.Partial("_TestRow", testItem)
-            }
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-default btn-add-new" data-url="@Url.Action("GetRow", "Test")">Add New</button>
-    <button class="btn btn-primary">Submit</button>
+    LoadingElementId = "loader_" + id
+},  new { id = id })) {
+
+    <div class="loader-content">
+        <span>@message</span>
+        @Html.ValidationSummary()        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Partial("_TestList", Model.Items, new ViewDataDictionary(this.ViewData) { { "CollectionName", "Items"} } )
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Partial("_TestList", Model.Data, new ViewDataDictionary(this.ViewData) { { "CollectionName", "Data" } })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">                    
+                    <button class="btn btn-primary btn-submit pull-right">Submit</button>
+                </div>
+            </div>            
+        </div>        
+        <div id="loader_@id" class="loader" style="display:none" >
+            <div class="loader-spinner">
+                <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                <div>Loading...</div>
+            </div>
+        </div>
+    </div>
 }
-    
+
 <script>
     $(function () {
         testController.initForm('@id');
     })
-</script>    
+</script>

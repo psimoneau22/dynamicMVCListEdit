@@ -1,0 +1,38 @@
+﻿@model List<TestModel>
+@{
+    var collectionName = ViewData["CollectionName"] as string;
+}
+
+<div class="panel panel-primary" data-collection="@collectionName">
+    <div class="panel-heading">
+        <h3 class="panel-title">@collectionName</h3>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(m => m[0].TestString)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m[0].TestBool)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m[0].CreateDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var testItem in Model)
+            {
+                @Html.Partial("_TestRow", testItem)
+            }
+        </tbody>
+    </table>
+    <div class="panel-footer">
+        <button type="button" class="btn btn-default btn-add-new" data-collection="@collectionName" data-url="@Url.Action("GetRow", "Test", new { collection = collectionName })">
+        <i class="fa fa-plus"></i> Add New
+        </button>
+    </div>
+</div>
+

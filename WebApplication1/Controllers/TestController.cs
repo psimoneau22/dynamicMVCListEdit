@@ -14,14 +14,20 @@ namespace WebApplication1.Controllers
             new TestModel {CreateDate = DateTime.Now, Id =1, TestBool=true, TestString="value1" },
             new TestModel {CreateDate = DateTime.Now.AddDays(-2), Id =2, TestBool=false, TestString="value2" }
         };
-        
+
+        private static List<TestModel> data = new List<TestModel>{
+            new TestModel {CreateDate = DateTime.Now, Id =1, TestBool=true, TestString="value1" },
+            new TestModel {CreateDate = DateTime.Now.AddDays(-2), Id =2, TestBool=false, TestString="value2" }
+        };
+
         [HttpGet]
         public ActionResult Index()
         {
             return View(new TestBaseModel
             {
                 Name = "try me",
-                Items = items
+                Items = items,
+                Data = data
             });
         }        
 
@@ -31,11 +37,14 @@ namespace WebApplication1.Controllers
             if (Validate(model, ModelState))
             {
                 items = model.Items;
+                data = model.Data;
+
                 TempData["message"] = "updated";
                 return PartialView("_TestForm", new TestBaseModel
                 {
                     Name = model.Name,
-                    Items = items
+                    Items = items,
+                    Data = data
                 });
             };
 
@@ -44,8 +53,9 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]        
-        public ActionResult GetRow()
+        public ActionResult GetRow(string collection)
         {
+            ViewData["CollectionName"] = collection;
             return PartialView("_TestRow", new TestModel());
         }
 
