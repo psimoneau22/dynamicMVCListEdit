@@ -325,8 +325,8 @@
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TestModel2.cshtml" />
     <Content Include="Views\Test\_TestRow2.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\TestModel3.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

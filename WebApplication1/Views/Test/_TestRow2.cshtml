@@ -1,6 +1,7 @@
 ﻿@model TestModel2
 @{ 
     var collectionName = ViewData["CollectionName"] as string;
+    Response.Headers.Add("Dynamic-Row-Target", "tbody > *");
 }
 
 <table>
@@ -11,3 +12,4 @@
         }
     </tbody>
 </table>
+

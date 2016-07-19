@@ -3,11 +3,10 @@
 <tr>    
     @Html.HiddenFor(m => m.Id)
     <td>
-        @Html.TextBoxFor(m => m.SomeDescription, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.SomeDescription, new { @class = "form-control autocomplete", data_url = "http://jsonplaceholder.typicode.com/users" })
     </td>
     <td>
         @Html.TextBoxFor(m => m.SomeNumber)
-        @Html.EditorFor(m => m.Child)
     </td>
     <td>
         <a href="#" class="text-danger btn-remove">
