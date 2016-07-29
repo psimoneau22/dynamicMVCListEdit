@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Frame1";
+}
+
+<h2>Inside the frame2</h2>
+
+<div>details in frame2</div>
+<input type='text'>
+<button id="frame2dialog2">Click to Open dialog2</button>
+<script>
+    $('#frame2dialog2').click(function () {        
+        top.BootstrapDialog.show({
+            message: $(
+                "<div><input type='text'><div>"
+            ),
+            onshow: function (dialog) {
+                top.dialogs.d2 = dialog;
+                top.dialogs.d1.close();
+            },
+            onhide: function () {
+                top.dialogs.d1.open();
+                delete top.dialogs.d2;
+            },
+            buttons: [
+                {
+                    label: "cancel",
+                    action: function (dialog) {
+                        dialog.close();       
+                    }
+                },
+                {
+                    label: "doIt",
+                    action: function (dialog) {
+                        if (!dialog.$modalBody.find('input').val()) {
+                            return;
+                        }                                  
+                        dialog.close();                        
+                        top.dialogs.d1.close();
+                    }
+                }
+            ]
+        });
+    });
+</script>

@@ -41,14 +41,19 @@
 
     function getAutoCompleteSource(req, resp) {
         $.get('http://jsonplaceholder.typicode.com/users', function (data) {
-            resp(data.filter(function (item) {                        
+            results = data.filter(function (item) {
                 return !req.term || new RegExp($.ui.autocomplete.escapeRegex(req.term), 'i').test(item.name + '(' + item.username + ') - ' + item.id)
             }).map(function (item) {
                 return {
                     label: item.name + '(' + item.username + ') - ' + item.id,
                     value: item.id
                 }
-            }));
+            });
+
+            if (!results.length) {
+                results.push({ label: "No Records Found", value: ""})
+            }
+            resp(results);
         });
     }
     
@@ -79,7 +84,7 @@
         }
 
         this.$target.append($source);
-
+        $source.get(0).scrollIntoView();
         initValidation();
         initUi()
     }

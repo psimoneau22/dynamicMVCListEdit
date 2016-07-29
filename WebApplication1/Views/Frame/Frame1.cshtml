@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Frame1";
+}
+
+<h2>Inside the frame1</h2>
+
+<div>details in frame1</div>
+<button id="frame1dialog1">Click to Open dialog1</button>
+<script>
+    $('#frame1dialog1').click(function () {
+        top.BootstrapDialog.show({
+            message: $(
+                "<iframe src='@Url.Action("Frame2")' width='100%' height='400'></iframe>"
+            ),
+            onshow: function (dialog) {
+                top.dialogs.d1 = dialog;
+            },
+            onhide: function (dialog) {
+                if (top.dialogs.d2) {
+                    dialog.setAutodestroy(false);
+                }
+                else {
+                    delete top.dialogs.d1;
+                    dialog.setAutodestroy(true);
+                }
+            }
+        })
+    })
+</script>
+

@@ -1,0 +1,40 @@
+﻿.ui-corner-all {
+    border-radius: 0;
+}
+.ui-widget-content .ui-state-default{
+    background: #e6e6e6 url("themes/base/images/ui-bg_glass_75_dadada_1x400.png") center center/1px 1px repeat
+}
+
+.ui-datepicker-header a {
+    cursor: pointer;
+}
+
+.ui-state-hover {
+    background: #ffffff url("themes/base/images/ui-bg_glass_75_dadada_1x400.png") 50% 50% repeat-x
+}
+        .ui-datepicker-header {
+            border-radius: 0px;
+            background: #4b4b4b;
+            color:#c6c8cd;
+        }
+
+        .ui-datepicker-today .ui-state-highlight {
+            background: #3a5dae;
+            color: #ffffff;
+            border-color: inherit;
+        }
+        .ui-datepicker-today .ui-state-highlight:hover {
+            background: #2C4885;
+        }
+
+        .ui-datepicker-current-day .ui-state-active {
+            background: #77b800;
+            color: #ffffff;
+        }
+        .ui-datepicker-current-day .ui-state-active:hover {
+            background: #679f00;
+        }
+
+        .ui-widget-header .ui-icon {
+            background-image: url("themes/base/images/ui-icons_888888_256x240.png")/*{iconsHeader}*/
+        }

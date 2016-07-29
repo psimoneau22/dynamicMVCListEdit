@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>IFrame dialog test</h2>
+
+<div>here is some stuff before</div>
+
+<iframe src="@Url.Action("Frame1")" width="800" height="500"></iframe>
+<div>here is some stuff after</div>
+
+<script>
+    top.dialogs = {};
+</script>
+

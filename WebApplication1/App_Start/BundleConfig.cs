@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Web;
 using System.Web.Optimization;
 
 namespace WebApplication1
@@ -21,14 +24,27 @@ namespace WebApplication1
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js"));
+                "~/Scripts/respond.js",
+                "~/node_modules/bootstrap3-dialog/dist/js/bootstrap-dialog.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            var styleBundle = new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/font-awesome.css",
-                "~/Content/themes/base/all.css",
-                "~/Content/jquery-{version}.js",
-                "~/Content/site.css"));
+                "~/Content/jquery-theme-override.css",
+               "~/node_modules/bootstrap3-dialog/dist/css/bootstrap-dialog.css",
+               "~/Content/site.css");
+            styleBundle.Orderer = new AsIsBundleOrderer();
+            bundles.Add(styleBundle);
+
+
+        }
+    }
+
+    class AsIsBundleOrderer : IBundleOrderer
+    {
+        public IEnumerable<BundleFile> OrderFiles(BundleContext context, IEnumerable<BundleFile> files)
+        {
+            return files;
         }
     }
 }

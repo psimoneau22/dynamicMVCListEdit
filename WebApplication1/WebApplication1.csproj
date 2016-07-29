@@ -52,6 +52,18 @@
       <HintPath>..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Dapper, Version=1.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.0-beta8\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper.SqlBuilder, Version=1.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.SqlBuilder.New.1.50.0-beta8\lib\net45\Dapper.SqlBuilder.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper.SqlBuilder.New, Version=1.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.SqlBuilder.New.1.50.0-beta8\lib\net45\Dapper.SqlBuilder.New.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -67,6 +79,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -184,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FrameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -206,6 +220,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\jquery-theme-override-datepicker.css" />
+    <Content Include="Content\jquery-theme-override.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -327,10 +343,14 @@
     <Content Include="Views\Test\_TestRow2.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\List.cshtml" />
+    <Content Include="Views\Frame\Index.cshtml" />
+    <Content Include="Views\Frame\Frame1.cshtml" />
+    <Content Include="Views\Frame\Frame2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
+    <Folder Include="Views\Ttset\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
